@@ -19,7 +19,16 @@ This project is a Streamlit-based SCM decision-support dashboard for global fash
 
 ## Data Source and Dataset Notes
 
-The dataset is a synthetic SCM dataset created for reproducible analysis and dashboard demonstration. It does not use confidential, customer, transaction, or internal company data.
+This project is designed around public retail datasets available on Kaggle and uses a reproducible synthetic SCM layer for dashboard execution. It does not use confidential, customer, transaction, or internal company data.
+
+Public data references:
+
+| Source | Public Dataset | How It Is Used in This Project |
+| --- | --- | --- |
+| Kaggle | [H&M Personalized Fashion Recommendations](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) | Reference for fashion retail product, customer transaction, and article metadata concepts. |
+| Kaggle | [M5 Forecasting - Accuracy](https://www.kaggle.com/competitions/m5-forecasting-accuracy) | Reference for retail demand forecasting, hierarchical sales structure, and 28-day forecast workflow. |
+
+The CSV files committed in this repository are not raw Kaggle exports. They are demonstration-ready SCM tables modeled from public retail data concepts so the dashboard can run without private data, large raw files, or external credentials.
 
 - Store master data represents five Japanese city-level retail locations: Tokyo, Yokohama, Osaka, and Fukuoka.
 - Product master data uses representative fashion retail categories such as innerwear, outerwear, bottoms, shirts, and knitwear.
