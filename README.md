@@ -17,6 +17,19 @@ This project is a Streamlit-based SCM decision-support dashboard for global fash
 
 在庫切れ・過剰在庫・補充優先度というSCM上の課題に対し、データ処理、在庫ロジック、可視化、自然言語による確認機能を組み合わせて、実務に近い意思決定プロセスを再現します。
 
+## Data Source and Dataset Notes
+
+The dataset is a synthetic SCM dataset created for reproducible analysis and dashboard demonstration. It does not use confidential, customer, transaction, or internal company data.
+
+- Store master data represents five Japanese city-level retail locations: Tokyo, Yokohama, Osaka, and Fukuoka.
+- Product master data uses representative fashion retail categories such as innerwear, outerwear, bottoms, shirts, and knitwear.
+- Sales, inventory, supply, weather, forecast, replenishment, and transfer tables are generated through deterministic simulation logic.
+- Demand patterns include seasonality, weekends, holiday-like periods, promotions, weather sensitivity, and store-type effects.
+- Inventory policy outputs are calculated from average demand, demand variation, lead time, service level, safety stock, and reorder point logic.
+- Weather values are simulation inputs for demand modeling and are not presented as official meteorological observations.
+
+The data is intended to demonstrate SCM analytics workflow design, inventory policy calculation, and operational decision support under controlled assumptions.
+
 ## Business Problem
 
 Global apparel retailers need to reduce stockouts, overstock, and logistics inefficiency while responding to demand volatility across stores and products.
@@ -34,7 +47,6 @@ This system answers the question:
 - Inter-store inventory transfer recommendation
 - Streamlit dashboard with English, Japanese, and Korean UI labels
 - SCM Manager Agent chat
-- PowerPoint presentation deck generation scripts
 
 ## Dashboard Screenshots
 
@@ -74,7 +86,6 @@ current_inventory < ROP -> replenishment recommendation
 - pandas / NumPy
 - Plotly
 - scikit-learn
-- python-pptx
 - Google GenAI SDK (optional)
 
 ## Folder Structure
@@ -90,19 +101,12 @@ ai-scm-data-analysis-project/
     forecast.csv
     recommendations.csv
     transfer_recommendations.csv
-  outputs/
-    AI_SCM_Data_Analysis_Project_3pages.pptx
-    AI_SCM_Data_Analysis_Project_Agent_Architecture_1page.pptx
   assets/
     screenshots/
       dashboard-risk-overview.jpg
       dashboard-demand-forecast.jpg
       dashboard-rop-policy.jpg
       dashboard-ai-agent.jpg
-  scripts/
-    build_demo_data.py
-    generate_ppt.py
-    presentation generation scripts
   src/
     agent.py
     scm_engine.py
@@ -114,20 +118,6 @@ ai-scm-data-analysis-project/
 cd ai-scm-data-analysis-project
 python -m pip install -r requirements.txt
 ```
-
-## Build Demo Data
-
-```bat
-python scripts\build_demo_data.py
-```
-
-Optional Open-Meteo weather API version:
-
-```bat
-python scripts\build_demo_data.py --use-open-meteo
-```
-
-Open-Meteo does not require an API key.
 
 ## Run Dashboard
 

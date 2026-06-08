@@ -329,7 +329,7 @@ st.markdown(
 )
 
 if not data_ready():
-    st.warning("Demo data is not built yet. / Demo data is not ready. Run: python scripts/build_demo_data.py")
+    st.warning("Demo data files are missing. Please verify that the required CSV files exist in the data directory.")
     st.stop()
 
 if "site_lang" not in st.session_state:
