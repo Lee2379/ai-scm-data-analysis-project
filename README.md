@@ -78,6 +78,7 @@ This system answers the question:
 This project is structured as an end-to-end analytics delivery workflow, from business planning to a deployable dashboard.
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#fff5f5", "primaryBorderColor": "#e60012", "primaryTextColor": "#111111", "lineColor": "#e60012"}}}%%
 flowchart TB
     A["1. Business Problem<br/>Stockout and overstock<br/>(ビジネス課題)"]
     B["2. Public Data Source<br/>Kaggle retail datasets<br/>(公開データ)"]
@@ -88,6 +89,10 @@ flowchart TB
     G["7. Dashboard Delivery<br/>Runnable SCM application<br/>(ダッシュボード提供)"]
 
     A --> B --> C --> D --> E --> F --> G
+
+    classDef redBox fill:#fff5f5,stroke:#e60012,stroke-width:2px,color:#111111;
+    class A,B,C,D,E,F,G redBox;
+    linkStyle default stroke:#e60012,stroke-width:2px;
 ```
 
 | Delivery Area | Implementation in This Project |
