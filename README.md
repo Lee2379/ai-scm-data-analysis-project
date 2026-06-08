@@ -79,13 +79,13 @@ This project is structured as an end-to-end analytics delivery workflow, from bu
 
 ```mermaid
 flowchart TB
-    A["1. Business Problem<br/>(ビジネス課題)<br/>Stockout and overstock"]
-    B["2. Public Data Source<br/>(公開データ)<br/>Kaggle retail datasets"]
-    C["3. Data EDA<br/>(探索的データ分析)<br/>SKU-store demand patterns"]
-    D["4. SCM Logic<br/>(SCMロジック)<br/>Forecast, safety stock, ROP"]
-    E["5. Development<br/>(開発)<br/>Dashboard and SCM Agent"]
-    F["6. Validation<br/>(検証)<br/>Risk and recommendation checks"]
-    G["7. Dashboard Delivery<br/>(ダッシュボード提供)<br/>Runnable SCM application"]
+    A["1. Business Problem<br/>Stockout and overstock<br/>(ビジネス課題)"]
+    B["2. Public Data Source<br/>Kaggle retail datasets<br/>(公開データ)"]
+    C["3. Data EDA<br/>SKU-store demand patterns<br/>(探索的データ分析)"]
+    D["4. SCM Logic<br/>Forecast, safety stock, ROP<br/>(SCMロジック)"]
+    E["5. Development<br/>Dashboard and SCM Agent<br/>(開発)"]
+    F["6. Validation<br/>Risk and recommendation checks<br/>(検証)"]
+    G["7. Dashboard Delivery<br/>Runnable SCM application<br/>(ダッシュボード提供)"]
 
     A --> B --> C --> D --> E --> F --> G
 ```
