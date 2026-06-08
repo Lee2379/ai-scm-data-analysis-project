@@ -6,10 +6,10 @@ This project is a Streamlit-based SCM decision-support dashboard for global fash
 
 ## Project Scope
 
-- Domain: fashion retail SCM and inventory operations
-- Focus areas: demand forecasting, inventory policy, replenishment planning, and store-transfer decisions
-- Decision level: SKU-store-level risk monitoring and action prioritization
-- Data scope: simulated retail SCM data only. No private company data is included.
+- Domain: fashion retail SCM and inventory operations (ファッション小売SCM・在庫業務)
+- Focus areas: demand forecasting, inventory policy, replenishment planning, and store-transfer decisions (需要予測・在庫ポリシー・補充計画・店舗間移動)
+- Decision level: SKU-store-level risk monitoring and action prioritization (SKU・店舗単位のリスク監視と優先順位付け)
+- Data scope: public-data-inspired synthetic SCM data only. No private company data is included. (公開データを参考にした合成SCMデータのみを使用)
 
 ## Japanese Summary
 
@@ -21,12 +21,14 @@ This project is a Streamlit-based SCM decision-support dashboard for global fash
 
 This project is designed around public retail datasets available on Kaggle and uses a reproducible synthetic SCM layer for dashboard execution. It does not use confidential, customer, transaction, or internal company data.
 
+本プロジェクトは、Kaggleで公開されている小売関連データセットを参考に設計しています。リポジトリ内のCSVは、ダッシュボード実行用に整備した再現可能なSCMデモデータであり、機密情報、顧客個人情報、実企業の内部データは含みません。
+
 Public data references:
 
 | Source | Public Dataset | How It Is Used in This Project |
 | --- | --- | --- |
-| Kaggle | [H&M Personalized Fashion Recommendations](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) | Reference for fashion retail product, customer transaction, and article metadata concepts. |
-| Kaggle | [M5 Forecasting - Accuracy](https://www.kaggle.com/competitions/m5-forecasting-accuracy) | Reference for retail demand forecasting, hierarchical sales structure, and 28-day forecast workflow. |
+| Kaggle | [H&M Personalized Fashion Recommendations](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) | Reference for fashion retail product, customer transaction, and article metadata concepts. (商品・取引・商品メタデータ設計の参考) |
+| Kaggle | [M5 Forecasting - Accuracy](https://www.kaggle.com/competitions/m5-forecasting-accuracy) | Reference for retail demand forecasting, hierarchical sales structure, and 28-day forecast workflow. (需要予測・階層型販売データ・28日予測設計の参考) |
 
 The CSV files committed in this repository are not raw Kaggle exports. They are demonstration-ready SCM tables modeled from public retail data concepts so the dashboard can run without private data, large raw files, or external credentials.
 
@@ -43,13 +45,15 @@ The data is intended to demonstrate SCM analytics workflow design, inventory pol
 
 The EDA process focuses on confirming that the dataset is suitable for SKU-store-level SCM decision support before applying forecasting, reorder point, and transfer logic.
 
+EDAでは、予測・発注点・店舗間移動ロジックを適用する前に、SKU・店舗単位で意思決定できるデータ構造になっているかを確認します。
+
 | EDA Area | Check | Result |
 | --- | --- | --- |
-| Data volume | Sales history coverage | 10,800 sales rows from 2025-01-01 to 2025-06-29 |
-| Master data | Store and product coverage | 5 Japanese city-level stores and 12 fashion retail SKUs |
-| Granularity | SCM decision unit | 60 SKU-store combinations |
-| Inventory risk | Stock status distribution | 26 stockout-risk cases and 3 overstock cases |
-| Recommendation output | Action table coverage | 60 replenishment records and 8 store-transfer recommendations |
+| Data volume (データ量) | Sales history coverage | 10,800 sales rows from 2025-01-01 to 2025-06-29 |
+| Master data (マスタデータ) | Store and product coverage | 5 Japanese city-level stores and 12 fashion retail SKUs |
+| Granularity (分析粒度) | SCM decision unit | 60 SKU-store combinations |
+| Inventory risk (在庫リスク) | Stock status distribution | 26 stockout-risk cases and 3 overstock cases |
+| Recommendation output (推奨結果) | Action table coverage | 60 replenishment records and 8 store-transfer recommendations |
 
 EDA workflow:
 
@@ -67,56 +71,58 @@ This system answers the question:
 
 > How can an AI Agent support SCM managers by forecasting demand, detecting SKU-store inventory risk, and recommending replenishment or store-transfer actions?
 
+日本語では、需要変動に対応しながら、欠品・過剰在庫・店舗間移動の判断をSKU・店舗単位で支援するSCM意思決定システムとして設計しています。
+
 ## End-to-End Delivery Flow
 
 This project is structured as an end-to-end analytics delivery workflow, from business planning to a deployable dashboard.
 
 ```mermaid
 flowchart TB
-    A["1. Business Problem<br/>Stockout and overstock"]
-    B["2. Public Data Source<br/>Kaggle retail datasets"]
-    C["3. Data EDA<br/>SKU-store demand patterns"]
-    D["4. SCM Logic<br/>Forecast, safety stock, ROP"]
-    E["5. Development<br/>Dashboard and SCM Agent"]
-    F["6. Validation<br/>Risk and recommendation checks"]
-    G["7. Deployment<br/>GitHub and runtime setup"]
+    A["1. Business Problem<br/>(ビジネス課題)<br/>Stockout and overstock"]
+    B["2. Public Data Source<br/>(公開データ)<br/>Kaggle retail datasets"]
+    C["3. Data EDA<br/>(探索的データ分析)<br/>SKU-store demand patterns"]
+    D["4. SCM Logic<br/>(SCMロジック)<br/>Forecast, safety stock, ROP"]
+    E["5. Development<br/>(開発)<br/>Dashboard and SCM Agent"]
+    F["6. Validation<br/>(検証)<br/>Risk and recommendation checks"]
+    G["7. Deployment<br/>(公開準備)<br/>GitHub and runtime setup"]
 
     A --> B --> C --> D --> E --> F --> G
 ```
 
 | Delivery Area | Implementation in This Project |
 | --- | --- |
-| Planning | Defines a retail SCM decision-support system around inventory risk and replenishment actions. |
-| Business Problem | Converts stockout, overstock, and transfer decisions into measurable SKU-store-level logic. |
-| Data Preparation | Uses structured CSV tables for store, product, sales, inventory, supply, weather, forecast, and recommendations. |
-| Development | Implements SCM calculation logic, dashboard visualization, and natural-language Agent responses. |
-| Deployment Readiness | Provides a GitHub-hosted project structure, dependency file, and Streamlit runtime command. |
+| Business Problem (課題定義) | Defines a retail SCM decision-support system around inventory risk and replenishment actions. |
+| Public Data and EDA (公開データ・EDA) | Uses Kaggle retail datasets as public references and validates SKU-store-level demand patterns. |
+| Data Preparation (データ整備) | Uses structured CSV tables for store, product, sales, inventory, supply, weather, forecast, and recommendations. |
+| Development (開発) | Implements SCM calculation logic, dashboard visualization, and natural-language Agent responses. |
+| Deployment Readiness (公開準備) | Provides a GitHub-hosted project structure, dependency file, and Streamlit runtime command. |
 
 ## Key Features
 
-- Demand forecasting by SKU and store
-- Reorder Point (ROP) and safety-stock calculation
-- SKU-store stockout and overstock risk detection
-- Replenishment recommendation with priority levels
-- Inter-store inventory transfer recommendation
-- Streamlit dashboard with English, Japanese, and Korean UI labels
-- SCM Manager Agent chat
+- Demand forecasting by SKU and store (SKU・店舗別需要予測)
+- Reorder Point (ROP) and safety-stock calculation (発注点・安全在庫計算)
+- SKU-store stockout and overstock risk detection (SKU・店舗別の欠品/過剰在庫リスク検知)
+- Replenishment recommendation with priority levels (優先度付き補充推奨)
+- Inter-store inventory transfer recommendation (店舗間在庫移動推奨)
+- Streamlit dashboard with English, Japanese, and Korean UI labels (多言語ダッシュボード)
+- SCM Manager Agent chat (SCMマネージャー向けAgent)
 
 ## Dashboard Screenshots
 
-### Inventory Risk and Replenishment Overview
+### Inventory Risk and Replenishment Overview (在庫リスク・補充推奨)
 
 ![Inventory risk distribution and top replenishment recommendations](assets/screenshots/dashboard-risk-overview.jpg)
 
-### Demand Forecast and Sales Pattern
+### Demand Forecast and Sales Pattern (需要予測・販売パターン)
 
 ![Demand forecast and recent sales pattern charts](assets/screenshots/dashboard-demand-forecast.jpg)
 
-### SKU-Store ROP Policy
+### SKU-Store ROP Policy (SKU・店舗別発注点ポリシー)
 
 ![SKU-store-level ROP policy table](assets/screenshots/dashboard-rop-policy.jpg)
 
-### SCM Manager Agent
+### SCM Manager Agent (SCMマネージャーAgent)
 
 ![Japanese SCM Manager Agent response for reorder priority](assets/screenshots/dashboard-ai-agent.jpg)
 
@@ -187,11 +193,11 @@ http://localhost:8502
 
 ## Project Value
 
-- Designed an end-to-end SCM decision workflow from demand signals to inventory actions.
-- Converted sales, inventory, supply, and forecast data into SKU-store-level replenishment recommendations.
-- Implemented ROP and safety-stock logic to make replenishment decisions explainable and auditable.
-- Added an AI Agent layer that helps SCM managers review inventory risk and action priorities in natural language.
-- Built the system to run with local rule-based logic by default for stable dashboard demonstrations.
+- Designed an end-to-end SCM decision workflow from demand signals to inventory actions. (需要シグナルから在庫アクションまでの一連の意思決定フローを設計)
+- Converted sales, inventory, supply, and forecast data into SKU-store-level replenishment recommendations. (販売・在庫・供給・予測データをSKU・店舗単位の補充推奨へ変換)
+- Implemented ROP and safety-stock logic to make replenishment decisions explainable and auditable. (発注点と安全在庫ロジックにより判断根拠を明確化)
+- Added an AI Agent layer that helps SCM managers review inventory risk and action priorities in natural language. (自然言語で在庫リスクと対応優先度を確認できるAgent層を追加)
+- Built the system to run with local rule-based logic by default for stable dashboard demonstrations. (ローカルルールベースで安定して動作する構成)
 
 ## Japanese Project Summary
 
