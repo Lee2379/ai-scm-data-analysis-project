@@ -72,13 +72,16 @@ This system answers the question:
 This project is structured as an end-to-end analytics delivery workflow, from business planning to a deployable dashboard.
 
 ```mermaid
-flowchart LR
-    A["Business Planning<br/>SCM issue framing"] --> B["Problem Definition<br/>Stockout, overstock, replenishment priority"]
-    B --> C["Data Design<br/>Store, product, sales, inventory, supply, weather"]
-    C --> D["Analytics Logic<br/>Forecast, safety stock, ROP, transfer rules"]
-    D --> E["Application Development<br/>Streamlit dashboard and SCM Agent"]
-    E --> F["Validation<br/>Risk tables, charts, and recommendation checks"]
-    F --> G["Deployment Preparation<br/>GitHub versioning, dependency setup, runtime command"]
+flowchart TB
+    A["1. Business Planning<br/>Define SCM issue and operational scope"]
+    B["2. Problem Definition<br/>Stockout, overstock, and replenishment priority"]
+    C["3. Data Design<br/>Store, product, sales, inventory, supply, and weather tables"]
+    D["4. Analytics Logic<br/>Forecast, safety stock, ROP, and transfer rules"]
+    E["5. Application Development<br/>Streamlit dashboard and SCM Manager Agent"]
+    F["6. Validation<br/>Risk tables, charts, and recommendation checks"]
+    G["7. Deployment Preparation<br/>GitHub versioning, dependencies, and runtime command"]
+
+    A --> B --> C --> D --> E --> F --> G
 ```
 
 | Delivery Area | Implementation in This Project |
