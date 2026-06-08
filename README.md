@@ -134,8 +134,8 @@ flowchart TB
 ## SCM Logic
 
 ```text
-Safety Stock = std_daily_demand x Z-value x sqrt(lead_time_days)
-ROP = avg_daily_demand x lead_time_days + Safety Stock
+Safety Stock = std_daily_demand * Z-value * sqrt(lead_time_days)
+ROP = avg_daily_demand * lead_time_days + Safety Stock
 ```
 
 If current inventory is below ROP, the system marks the SKU-store pair as stockout risk and recommends replenishment.
